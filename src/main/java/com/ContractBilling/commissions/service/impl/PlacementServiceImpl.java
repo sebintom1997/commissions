@@ -39,6 +39,7 @@ public class PlacementServiceImpl implements PlacementService {
     private final SettingsRepository settingsRepository;
     private final CommissionCalculationService calculationService;
     private final CommissionPlanService commissionPlanService;
+    private final CommissionPlanRepository commissionPlanRepository;
     private final RevenueRecognitionEngine recognitionEngine;
 
     @Override
@@ -107,9 +108,9 @@ public class PlacementServiceImpl implements PlacementService {
         log.info("Commission plan created: ID={}", plan.getId());
 
         // Generate recognition schedule
-        // Fetch the created plan for recognition engine
-        var savedPlan = new CommissionPlan();
-        savedPlan.setId(plan.getId());
+        // Fetch the created plan from database for recognition engine
+        CommissionPlan savedPlan = commissionPlanRepository.findById(plan.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("CommissionPlan", "id", plan.getId()));
         recognitionEngine.generateRecognitionSchedule(savedPlan);
         log.info("Recognition schedule generated for plan ID: {}", plan.getId());
 
