@@ -16,6 +16,7 @@ The system manages:
 
 ### Key Features
 
+
 - ✅ Complete CRUD operations for all entities
 - ✅ Automatic commission calculations with tiered percentages
 - ✅ Sequence-based commission rates (1st, 2nd, 3rd+ contracts)
