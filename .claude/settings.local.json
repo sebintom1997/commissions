@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(./mvnw clean test:*)",
+      "Bash(./mvnw clean compile:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
